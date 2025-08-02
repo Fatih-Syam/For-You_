@@ -1,0 +1,162 @@
+body {
+    font-family: 'Indie Flower', cursive;
+    background: linear-gradient(to right, #ffe6ec, #f299f5);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  
+  #musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, #ff8ec7, #ffa3a3);
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+  #musicBtn:hover {
+    transform: scale(1.1);
+  }
+  
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(255, 192, 203, 0.2);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  a:link,
+  a:visited {
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: pink;
+    text-shadow: 1px 1px black;
+  }
+  
+  .message-box,
+  .game-box,
+  .result-box,
+  .popup-game {
+    margin-top: 25px;
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 245, 247, 0.9);
+    box-shadow: 0 0 15px rgba(255, 105, 135, 0.1);
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .btn-group button {
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-group button:hover {
+    background: linear-gradient(to right, #fad0c4, #ff9a9e);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+  .game-options button,
+  .will-you-buttons button,
+  .popup-game button {
+    margin: 10px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  #yesBtn, #willYesBtn {
+    background: #ffb6c1;
+    color: white;
+    box-shadow: 0 0 10px #ffb6c1aa;
+  }
+  
+  #noBtn, #willNoBtn {
+    background: white;
+    color: #ff69b4;
+    border: 2px solid #ff69b4;
+    position: relative;
+    box-shadow: 0 0 6px rgba(255, 105, 180, 0.2);
+  }
+  
+  .try-again button {
+    background: #ffd1dc;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  
+  .followUp {
+    font-size: 1.3em;
+    color: #e75480;
+    margin-top: 15px;
+  }
+  
+  .lyric-line {
+    font-family: 'Indie Flower', cursive;
+  }
+  
+  .emoji {
+    position: fixed;
+    font-size: 24px;
+    opacity: 0.9;
+    z-index: 999;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(-50px) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .cursor-heart {
+    position: absolute;
+    pointer-events: none;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  
+  

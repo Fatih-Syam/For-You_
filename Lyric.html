@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><u>Lirik - Anugerah Terindah</u></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="particel.js">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ffe6ec, #fd9fee);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .lyric-symss {
+            font-size: small;
+        }
+
+        .lyric-container {
+            perspective: 1000px;
+        }
+
+        .lyric-line {
+            transition: all 0.5s ease;
+            transform-origin: left center;
+            opacity: 0.5;
+            transform: scale(0.95);
+            filter: blur(1px);
+        }
+
+        .lyric-line.active {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+       
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background-color: #e2e8f0;
+            border-radius: 2.5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #ffe6ec, #f78cce);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .btn-play {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f7ade4;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 sm:p-10 lyric-container overflow-hidden relative">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                    <div class="absolute top-10 left-10 w-3 h-3 rounded-full bg-purple-300/50 floating"></div>
+                    <div class="absolute top-20 right-20 w-4 h-4 rounded-full bg-blue-300/50 floating" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-10 left-24 w-2 h-2 rounded-full bg-pink-300/50 floating" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-20 right-24 w-5 h-5 rounded-full bg-yellow-300/50 floating" style="animation-delay: 1.5s;"></div>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-8">
+                    <li class="lyric-symss">Cover by Symss</li>
+                    <i class="fas fa-music text-pink-500 mr-2"></i>Lirik Lagu
+                    <br>
+                </h1>
+                
+                <div class="text-left space-y-6" id="lyrics-container">
+                    <p class="text-3xl text-gray-600 italic mb-8 text-center">
+                        "Anugerah Terindah"
+                    </p>
+
+                    <div class="lyric-line" data-start="0.5">
+                        <p class="text-2xl font-medium text-gray-700 text-left leading-relaxed">
+                            "…<span class="highlight font-semibold text-pink-600">Ku ingin kau jadi milikku</span>temani diriku seumur hidupku 
+                        </p>
+                    </div>
+
+                    <div class="lyric-line" data-start="4.0">
+                        <p class="text-2xl font-medium text-gray-700 text-left leading-relaxed">
+                            dan ku berjanji tak akan sakiti<span class="highlight font-semibold text-red-600">kau yang kucinta sepenuh</span>hati
+                        </p>
+                    </div>
+
+                    <div class="lyric-line" data-start="7.5">
+                        <p class="text-2xl font-medium text-gray-700 text-left leading-relaxed">
+                             biarkan semua manusia<span class="highlight font-semibold text-red-600">jadi saksi mata</span>
+                        </p>
+                    </div>
+
+                    <div class="lyric-line" data-start="10.0">
+                        <p class="text-2xl font-medium text-gray-700 text-left leading-relaxed">
+                            Bahwa memilikimu adalah<span class="highlight font-semibold text-pink-600">anugerah terindah untuk diriku..."</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="progress-container mt-6">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-center space-x-4">
+                    <button id="playBtn" class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-white-500 to-pink-500 text- shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <span class="text-gray-600 font-medium" id="time-display">0:00</span>
+                    <audio id="audio" src="Cover Song.mp3"></audio>
+                </div>
+            </div>
+            <<a href="https://www.instagram.com/direct/t/17842025825818754/" class="btn-play text-center mt-2 block">⬅ Let's Talk To Me</a>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('audio');
+            const playBtn = document.getElementById('playBtn');
+            const playIcon = document.getElementById('playIcon');
+            const progressBar = document.getElementById('progress-bar');
+            const timeDisplay = document.getElementById('time-display');
+            const lyricLines = document.querySelectorAll('.lyric-line');
+            
+            // Timeline untuk lirik (dalam detik)
+            const lyricsTiming = [
+                { start: 2.7, end: 12.6 },
+                { start: 12.7, end: 22.9 },
+                { start: 23.0, end: 29.0 },
+                { start: 29.1, end: 45.0 }
+            ];
+            
+            // Update progress bar dan waktu
+            audio.addEventListener('timeupdate', function() {
+                const currentTime = audio.currentTime;
+                const duration = audio.duration || 1;
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                // Format waktu menit:detik
+                const minutes = Math.floor(currentTime / 60);
+                const seconds = Math.floor(currentTime % 60);
+                timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                // Update aktif/tidak aktif lirik
+                lyricLines.forEach((line, index) => {
+                    const timing = lyricsTiming[index];
+                    if (currentTime >= timing.start && currentTime <= timing.end) {
+                        line.classList.add('active');
+                    } else {
+                        line.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Klik progress bar untuk seek
+            progressBar.parentElement.addEventListener('click', function(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                
+                audio.currentTime = (clickX / width) * duration;
+            });
+            
+            // Tombol play/pause
+            playBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                } else {
+                    audio.pause();
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                }
+            });
+            
+            // Saat lagu selesai
+            audio.addEventListener('ended', function() {
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                lyricLines.forEach(line => line.classList.remove('active'));
+            });
+            
+            // Preload audio (untuk mendapatkan durasi)
+            audio.addEventListener('loadedmetadata', function() {
+                const duration = audio.duration;
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                console.log(`Durasi lagu: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`);
+            });
+            
+            // Auto play ketika interaksi pertama (optional)
+            document.body.addEventListener('click', function initAudio() {
+                // audio.play().then(() => audio.pause());
+                document.body.removeEventListener('click', initAudio);
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
