@@ -66,6 +66,18 @@ function showGame() {
   dropEmojis(["❄", "💫", "🌸", "💖", "🪽"]);
 }
 
+function playMusic() {
+  const music = document.getElementById("CoverSong");
+  music.play()
+    .then(() => {
+      lyrics.classList.remove("hidden");
+    })
+    .catch(() => {
+      alert("Klik tombol Play Music rissa");
+    });
+}
+
+
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * 300;
   const y = Math.random() * 200;
@@ -158,3 +170,4 @@ window.onload = () => {
     console.warn("Autoplay failed. User must interact first.");
   });
 };
+
